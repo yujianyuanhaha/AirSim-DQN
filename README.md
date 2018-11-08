@@ -36,3 +36,29 @@ Open Source Library: [CNTK](https://github.com/Microsoft/CNTK)
 
 # Reference
 * install AriSim on Mac in Chinese(https://blog.csdn.net/qq_26919935/article/details/80901773)  
+
+
+# Install AirSim on Ubuntn 18.04
+1. install __UE__
+    1. signup Unreal Engine
+    2. connect git account
+    3. `git clone -b 4.17 https://github.com/EpicGames/UnrealEngine.git`
+    4. cd UnrealEngine
+    5. `/Setup.sh`
+    6. `./GenerateProjectFiles.sh`
+    7. `make`
+    8. test lanuch by `Engine/Binaries/Linux/UE4Editor`
+    The 5~7 step would eat up ~40G size of disk(while ~8G at Windows) and take ~4h time.
+2. install __Airsim__
+    1. todo
+    2. test
+3. install __CNTK__
+    PyPI does NOT support Ubuntu18.04, and wheel (.whl) files way does not support python 3.7.0 so far, if no version fit your computer, try _make conda virtual environment_. e.g. I make a python2.7 environment to go on.
+    1.
+    2.
+    3. test
+    4. test `DQN_car.py`
+
+Notice:
+1. when test `hello_car.py`, make sure you open the UE4Editor and click the PLAY button.
+
