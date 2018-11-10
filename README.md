@@ -54,11 +54,37 @@ Open Source Library: [CNTK](https://github.com/Microsoft/CNTK)
     2. test
 3. install __CNTK__
     PyPI does NOT support Ubuntu18.04, and wheel (.whl) files way does not support python 3.7.0 so far, if no version fit your computer, try _make conda virtual environment_. e.g. I make a python2.7 environment to go on.
-    1.
-    2.
-    3. test
-    4. test `DQN_car.py`
+    1. fix `libmpi_cxx.so.1` errror  -> follow [refer](https://tweaks-tips.blogspot.com/2017/12/microsoft-cntk-libmpi-importerror.html), `sudo ln -s /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.20 /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.1` and `sudo ln -s /usr/lib/x86_64-linux-gnu/libmpi.so.20.10.1 /usr/lib/x86_64-linux-gnu/libmpi.so.12`  and update the path as `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu`.
+    2. fix `libmklml.so`. -> install by `conda install -c anaconda mklml` and update path by `export LD_LIBRARY_PATH=/home/jet/anaconda3/envs/py2/lib:$LD_LIBRARY_PATH`. 
+
+Currently pass import cntk with warning
+``` bash
+/home/jet/anaconda3/envs/py2/lib/python2.7/site-packages/cntk/cntk_py_init.py:47: UserWarning: Unsupported Linux distribution (ubuntu-18.04). CNTK supports Ubuntu 16.04 and above, only.
+  warnings.warn('Unsupported Linux distribution (%s-%s). CNTK supports Ubuntu 16.04 and above, only.' % (__my_distro__, __my_distro_ver__))
+```
+However, new problem is `DQNcar.py` cannot run through, with bugs __MemoryError__ as 
+```
+/home/jet/anaconda3/envs/py2/lib/python2.7/site-packages/cntk/cntk_py_init.py:47: UserWarning: Unsupported Linux distribution (ubuntu-18.04). CNTK supports Ubuntu 16.04 and above, only.
+  warnings.warn('Unsupported Linux distribution (%s-%s). CNTK supports Ubuntu 16.04 and above, only.' % (__my_distro__, __my_distro_ver__))
+Connected!
+Client Ver:1 (Min Req: 1), Server Ver:1 (Min Req: 1)
+
+Traceback (most recent call last):
+  File "DQNcar.py", line 505, in <module>
+    agent = DeepQAgent((NumBufferFrames, SizeRows, SizeCols), NumActions, monitor=True)
+  File "DQNcar.py", line 270, in __init__
+    self._memory = ReplayMemory(memory_size, input_shape[1:], 4)
+  File "DQNcar.py", line 35, in __init__
+    self._states = np.zeros((size,) + sample_shape, dtype=np.float32)
+MemoryError
+```
+
+
+3. test
+4. test `DQN_car.py`
 
 Notice:
 1. when test `hello_car.py`, make sure you open the UE4Editor and click the PLAY button.
 
+# Airsim + Tensorflow + Keras
+Another work implement DQN with tensorflow rather than DQN. [link](https://github.com/AirSimDroneSimulator)
