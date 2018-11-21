@@ -88,3 +88,21 @@ Notice:
 
 # Airsim + Tensorflow + Keras
 Another work implement DQN with tensorflow rather than DQN. [link](https://github.com/AirSimDroneSimulator)
+
+
+
+
+# install CNTK
+cntk current does not support ubuntu 18.04
+1. downgrade python to 3.5.0
+2. install `numpy`, `msgpack-rpc-python`
+3. install related `.whl`, e.g. python3.5.0+cntk2.5.0 with (https://cntk.ai/PythonWheel/CPU-Only/cntk-2.5-cp35-cp35m-linux_x86_64.whl)
+4. `conda install -c anaconda mklml`
+5. update path `export LD_LIBRARY_PATH=/home/jet/anaconda3/lib:$LD_LIBRARY_PATH`, cd to related path to check lib like `libmklml.so` exisit.
+6. type `python`, type `import cntk` to test.
+Output would be like
+``` bash
+/home/jet/anaconda3/lib/python3.5/site-packages/cntk/cntk_py_init.py:47: UserWarning: Unsupported Linux distribution (ubuntu-18.04). CNTK supports Ubuntu 16.04 and above, only.
+  warnings.warn('Unsupported Linux distribution (%s-%s). CNTK supports Ubuntu 16.04 and above, only.' % (__my_distro__, __my_distro_ver__))
+
+```
