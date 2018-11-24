@@ -1,3 +1,25 @@
+
+# update api
+Both the open source use on __Airsim 1.2.0__ or earlier, refer to [update api](https://github.com/Microsoft/AirSim/blob/master/docs/upgrade_apis.md) for some substitute. Some of them still work with warinings, while some pop erors.
+## getPosition( ) getVelocity( ) getCollisionInfo() 
+1. `WARNING:root:getPosition API is deprecated. For ground-truth please use simGetGroundTruthKinematics() API.`
+2. `WARNING:root:getVelocity API is deprecated. For ground-truth please use simGetGroundTruthKinematics() API.` 
+3. `WARNING:root:getCollisionInfo API is renamed to simGetCollisionInfo. Please update your code`  
+
+
+__SOLUTION__
+replace any `getPosition( )` as `simGetGroundTruthKinematics().position`, and `getVelocity()` as `simGetGroundTruthKinematics().linear_velocity`. as reference from [`client.py`](https://github.com/Microsoft/AirSim/blob/master/PythonClient/airsim/client.py)  
+``` python
+    def getPosition(self):
+        logging.warning("getPosition API is deprecated. For ground-truth please use simGetGroundTruthKinematics() API." + self.upgrade_api_help)
+        return self.simGetGroundTruthKinematics().position
+    def getVelocity(self):
+        logging.warning("getVelocity API is deprecated. For ground-truth please use simGetGroundTruthKinematics() API." + self.upgrade_api_help)
+    return self.simGetGroundTruthKinematics().linear_velocity
+```
+Also, `getCollisionInfo()` is renamed to `simGetCollisionInfo()`. 
+
+
 # [AirSimDroneSimulator](https://github.com/AirSimDroneSimulator/AirSim)
 1. install `theano`, `h5py`
 2. run __`main.py`__ of __3D_path_finding/DQN__
@@ -9,7 +31,8 @@
 3. run __`main.py`__ of __3D_path_finding/DDQN__
     1. `ImportError: No module named 'cv2'` -> `conda install -c conda-forge opencv`
     2. `RPCError: rpclib: client error C0002: Function 'getHomeGeoPoint' was called with an invalid number of arguments. Expected: 0, got: 1` ->
-4. __`captureimages.py`__ of __Object_Detection/Faster_R-CNN__
+4. run __`test.py`__ of __3D_path_finding/DDQN__
+5. __`captureimages.py`__ of __Object_Detection/Faster_R-CNN__
     1. `RPCError: rpclib: client error C0002: Function 'getHomeGeoPoint' was called with an invalid number of arguments. Expected: 0, got: 1`
 
 
@@ -22,7 +45,7 @@
 1. __`dqn_tr1.py`__
     1. `moveToPosition()` -> `moveToPositionAsync()`
     2. `goHome()` -> `goHomeAsync()`
-    3. PASS!
+    3. ~~PASS!~~ -> `NameError: name 'AirSimImageType' is not defined`
     4. warining
         ``` bash
         WARNING:root:getVelocity API is deprecated. For ground-truth please use simGetGroundTruthKinematics() API.
