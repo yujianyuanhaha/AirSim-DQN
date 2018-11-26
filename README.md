@@ -1,8 +1,8 @@
-# Wolverine
+# ~~Wolverine~~
 __Deep Reinforcement Learning for UAV__   
 Semester Project for EE5894 Robot Motion Planning, Fall2018, Virginia Tech      
-Team Members:​​ Chadha, Abhimanyu, Ragothaman, Shalini and Jianyuan (Jet) Yu      
-Contact: Abhimanyu(abhimanyu16@vt.edu),  Shalini(rshalini@vt.edu), Jet(jianyuan@vt.edu)  
+Team Members:​​ ~~Chadha, Abhimanyu, Ragothaman, Shalini and~~ Jianyuan (Jet) Yu      
+Contact: ~~Abhimanyu(abhimanyu16@vt.edu),  Shalini(rshalini@vt.edu)~~, Jet(jianyuan@vt.edu)  
 Simulator: [AirSim](https://github.com/Microsoft/AirSim)  
 Open Source Library: [CNTK](https://github.com/Microsoft/CNTK)
 
@@ -34,7 +34,7 @@ Open Source Library: [CNTK](https://github.com/Microsoft/CNTK)
 8. Launch the ```LandscapeMountains.uproject```.  
 
 
-# Reference
+## Reference
 * install AriSim on Mac in Chinese(https://blog.csdn.net/qq_26919935/article/details/80901773)  
 
 
@@ -49,9 +49,13 @@ Open Source Library: [CNTK](https://github.com/Microsoft/CNTK)
     7. `make`
     8. test lanuch by `Engine/Binaries/Linux/UE4Editor`
     The 5~7 step would eat up ~40G size of disk(while ~8G at Windows) and take ~4h time.
-2. install __Airsim__
-    1. todo
-    2. test
+2. install __Airsim__, [official guide](https://github.com/Microsoft/AirSim/blob/master/docs/build_linux.md), Ubuntu start from 1.2.0.
+    ``` bash
+        git clone https://github.com/Microsoft/AirSim.git
+        cd AirSim
+        ./setup.sh
+        ./build.sh
+    ```
 3. install __CNTK__
     PyPI does NOT support Ubuntu18.04, and wheel (.whl) files way does not support python 3.7.0 so far, if no version fit your computer, try _make conda virtual environment_. e.g. I make a python2.7 environment to go on.
     1. fix `libmpi_cxx.so.1` errror  -> follow [refer](https://tweaks-tips.blogspot.com/2017/12/microsoft-cntk-libmpi-importerror.html), `sudo ln -s /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.20 /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.1` and `sudo ln -s /usr/lib/x86_64-linux-gnu/libmpi.so.20.10.1 /usr/lib/x86_64-linux-gnu/libmpi.so.12`  and update the path as `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu`.
@@ -86,8 +90,7 @@ MemoryError
 Notice:
 1. when test `hello_car.py`, make sure you open the UE4Editor and click the PLAY button.
 
-# Airsim + Tensorflow + Keras
-Another work implement DQN with tensorflow rather than DQN. [link](https://github.com/AirSimDroneSimulator)
+
 
 
 
@@ -106,3 +109,8 @@ Output would be like
   warnings.warn('Unsupported Linux distribution (%s-%s). CNTK supports Ubuntu 16.04 and above, only.' % (__my_distro__, __my_distro_ver__))
 
 ```
+
+# Reference Projects
+* [Autonomous Driving using End-to-End Deep Learning: an AirSim tutorial](https://github.com/Microsoft/AutonomousDrivingCookbook/tree/master/AirSimE2EDeepLearning) - official
+* [Object Tracing with UAV in AirSim Environment](https://github.com/AirSimDroneSimulator) - implement DQN with tensorflow/keras rather than CNTK. 
+* [Obstacle-Avoidance-using-DDQN](https://github.com/npd15393/Obstacle-Avoidance-using-DDQN) - CNTK
