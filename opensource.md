@@ -4,7 +4,8 @@
 
 
 # Environment Setup
-[version](https://github.com/Microsoft/AirSim/releases/tag/v1.2.0Linux) for many other environments. e.g. cities. Although many of them are for Windows, copy them to related folders.
+[version](https://github.com/Microsoft/AirSim/releases/tag/v1.2.0Linux) for many other environments. e.g. cities. Although many of them are for Windows, copy them to related folders.  
+* remeber to backup a clean version before you start your own version.
 
 
 # UE4Editor easily crashed
@@ -86,10 +87,23 @@ based on __CNTK__.
     2. `TypeError: 'module' object is not callable` -> py3 grammer of import
     3. `ValueError: Negative dimension size caused by subtracting 8 from 4 for 'conv2d_1/convolution' (op: 'Conv2D') with input shapes: [?,4,84,84], [8,8,84,16].` OR ``
         1. tricks, debug into to see the size, `model.input_size`, `model.output_size` after each `Conv2D` and `Max2Dpooling`. Likely input is unmatched.
-        2. [refer codes](https://github.com/keras-team/keras/blob/master/examples/mnist_cnn.py) `from keras import backend as K; K.image_data_format()` -> `'channels_last'` / __input_shape = (img_rows, img_cols, 1)__
+        2. [refer codes](https://github.com/keras-team/keras/blob/master/examples/mnist_cnn.py) `from keras import backend as K; K.image_data_format()` -> `'channels_last'` / __input_shape = (img_rows, img_cols, 1)__ PASS
 
 3. __`ddqn_example.py`__ (sample code, nothing to do with AirSim) 
     1. `merge()`-> `TypeError: 'module' object is not callable`
         1. reinstalll tensorflow and keras
     2. `concate()` -> size unmatch
     3. can concate substitute the expired merge?
+
+
+## ToDo
+1. the CNN, the network match
+2. print action and reward
+3. file and data save
+
+
+## corrupt env
+Collide with Plane, Car -> set plane coord, Multirotor -> wait
+1. go on fix -> set the plane coord
+2. ~~copy and work on a new one~~ -> Fail
+3. ~~start over comiple~~ -> Fail
